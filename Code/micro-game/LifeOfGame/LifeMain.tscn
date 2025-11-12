@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://biqst2s1p4etq"]
+
+[ext_resource type="Script" uid="uid://du735obpop0mk" path="res://LifeOfGame/LifeMain.cs" id="1_ucayh"]
+[ext_resource type="PackedScene" uid="uid://prxvr4373a0j" path="res://LifeOfGame/Cell.tscn" id="2_qnngq"]
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("timer")]
+script = ExtResource("1_ucayh")
+cellScene = ExtResource("2_qnngq")
+timer = NodePath("Timer")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 920.0
+offset_right = 1024.0
+offset_bottom = 40.0
+text = "生命游戏"
+
+[node name="randomBtn" type="Button" parent="."]
+offset_left = 920.0
+offset_top = 40.0
+offset_right = 1016.0
+offset_bottom = 80.0
+text = "随机刷新"
+
+[node name="testBtn" type="Button" parent="."]
+offset_left = 920.0
+offset_top = 88.0
+offset_right = 1024.0
+offset_bottom = 128.0
+text = "手动更新状态"
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="startBtn" type="Button" parent="."]
+offset_left = 920.0
+offset_top = 144.0
+offset_right = 1024.0
+offset_bottom = 184.0
+text = "游戏开始"
+
+[node name="stopBtn" type="Button" parent="."]
+offset_left = 920.0
+offset_top = 192.0
+offset_right = 1024.0
+offset_bottom = 232.0
+text = "游戏停止"
+
+[node name="AliveCountLabel" type="Label" parent="."]
+offset_left = 896.0
+offset_top = 256.0
+offset_right = 1024.0
+offset_bottom = 320.0
+text = "0"
+
+[connection signal="pressed" from="randomBtn" to="." method="RandomInitializeCells"]
+[connection signal="pressed" from="testBtn" to="." method="UpdateCellStates"]
+[connection signal="pressed" from="startBtn" to="." method="StartGame"]
+[connection signal="pressed" from="stopBtn" to="." method="StopGame"]

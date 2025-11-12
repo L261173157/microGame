@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://de2kamtbeihks"]
+
+[ext_resource type="Script" uid="uid://cjwvwhuthtee8" path="res://Main.cs" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://cxe6pp0xb4wjs" path="res://BtnLifeGame.cs" id="2_0xm2m"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_ig7tw")
+
+[node name="btn_lifeGame" type="Button" parent="."]
+offset_left = 400.0
+offset_top = 200.0
+offset_right = 648.0
+offset_bottom = 272.0
+text = "生命游戏"
+script = ExtResource("2_0xm2m")
+
+[connection signal="pressed" from="btn_lifeGame" to="btn_lifeGame" method="OnBtnLifeGamePressed"]
