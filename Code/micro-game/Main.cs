@@ -3,14 +3,18 @@ using System;
 
 public partial class Main : Node2D
 {
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        GD.Print("Hello, Godot!");
-    }
-    public override void _Process(double delta)
-    {
-        
+        GD.Print("Main scene is ready.");
     }
 
+    public void _on_LifeGameStartButton_pressed()
+    {
+        GetTree().ChangeSceneToFile("res://LifeOfGame/LifeMain.tscn");
+    }
+
+    public void _on_MazeGameStartButton_pressed()
+    {
+        GetTree().ChangeSceneToFile("res://MazeGame/MazeMain.tscn");
+    }
 }

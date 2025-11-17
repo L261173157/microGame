@@ -58,15 +58,25 @@ public partial class LifeMain : Node2D
     //游戏开始
     public void StartGame()
     {
-        generationCount = 0;
-        RandomInitializeCells();
+        // generationCount = 0;
+        // RandomInitializeCells();
         timer.Start();
     }
     //游戏停止
-    public void StopGame()
+    public void PauseGame()
     {
         UpdateAliveCount();
         timer.Stop();
+    }
+
+    public void ResetGame()
+    {
+        generationCount = 0;
+        foreach (var cell in cellGrid.Values)
+        {
+            cell.Kill();
+        }
+        UpdateAliveCount();
     }
 
 
@@ -101,6 +111,21 @@ public partial class LifeMain : Node2D
     //更新细胞状态
     public void UpdateCellStates()
     {
+        //检查是否所有的都死亡
+        bool allDead = true;
+        foreach (var cell in cellGrid.Values)
+        {
+            if (cell.CurrentState == CellState.Alive)
+            {
+                allDead = false;
+                break;
+            }
+        }
+        if (allDead)
+        {
+            PauseGame();
+            return;
+        }
         foreach (var cell in cellGrid.Values)
         {
             var neighbors = GetNeighborCells(cell.GridPos);

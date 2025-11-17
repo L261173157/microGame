@@ -1,17 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://de2kamtbeihks"]
+[gd_scene load_steps=2 format=3 uid="uid://de2kamtbeihks"]
 
 [ext_resource type="Script" uid="uid://cjwvwhuthtee8" path="res://Main.cs" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://cxe6pp0xb4wjs" path="res://BtnLifeGame.cs" id="2_0xm2m"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_ig7tw")
 
-[node name="btn_lifeGame" type="Button" parent="."]
-offset_left = 400.0
-offset_top = 200.0
-offset_right = 648.0
-offset_bottom = 272.0
+[node name="Button" type="Button" parent="."]
+offset_left = 432.0
+offset_top = 160.0
+offset_right = 624.0
+offset_bottom = 280.0
+theme_override_font_sizes/font_size = 32
 text = "生命游戏"
-script = ExtResource("2_0xm2m")
 
-[connection signal="pressed" from="btn_lifeGame" to="btn_lifeGame" method="OnBtnLifeGamePressed"]
+[node name="Button2" type="Button" parent="."]
+offset_left = 432.0
+offset_top = 288.0
+offset_right = 624.0
+offset_bottom = 408.0
+theme_override_font_sizes/font_size = 32
+text = "迷宫游戏"
+
+[connection signal="pressed" from="Button" to="." method="_on_LifeGameStartButton_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_MazeGameStartButton_pressed"]

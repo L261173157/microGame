@@ -37,21 +37,34 @@ offset_right = 1024.0
 offset_bottom = 184.0
 text = "游戏开始"
 
-[node name="stopBtn" type="Button" parent="."]
+[node name="pauseBtn" type="Button" parent="."]
 offset_left = 920.0
 offset_top = 192.0
 offset_right = 1024.0
 offset_bottom = 232.0
-text = "游戏停止"
+text = "游戏暂停"
 
 [node name="AliveCountLabel" type="Label" parent="."]
-offset_left = 896.0
-offset_top = 256.0
+offset_left = 920.0
+offset_top = 304.0
 offset_right = 1024.0
-offset_bottom = 320.0
+offset_bottom = 368.0
 text = "0"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 720.0
+offset_bottom = 720.0
+
+[node name="stopBtn" type="Button" parent="."]
+offset_left = 920.0
+offset_top = 240.0
+offset_right = 1024.0
+offset_bottom = 280.0
+text = "游戏重启"
 
 [connection signal="pressed" from="randomBtn" to="." method="RandomInitializeCells"]
 [connection signal="pressed" from="testBtn" to="." method="UpdateCellStates"]
 [connection signal="pressed" from="startBtn" to="." method="StartGame"]
-[connection signal="pressed" from="stopBtn" to="." method="StopGame"]
+[connection signal="pressed" from="pauseBtn" to="." method="StopGame"]
+[connection signal="pressed" from="pauseBtn" to="." method="PauseGame"]
+[connection signal="pressed" from="stopBtn" to="." method="ResetGame"]
