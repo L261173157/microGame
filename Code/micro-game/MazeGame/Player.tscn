@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://3hymt1cwd3oi"]
+
+[ext_resource type="Script" uid="uid://dy35fe40y8w64" path="res://MazeGame/CharacterBody2d.cs" id="1_2dcit"]
+[ext_resource type="Texture2D" uid="uid://clrymsg02n31" path="res://icon.svg" id="2_3gt62"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dbb8p"]
+size = Vector2(64, 64)
+
+[node name="Player" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_2dcit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_dbb8p")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(32, 32)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_3gt62")
