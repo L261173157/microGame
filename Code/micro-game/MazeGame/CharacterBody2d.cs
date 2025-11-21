@@ -37,6 +37,7 @@ public partial class CharacterBody2d : CharacterBody2D
     public override void _Ready()
     {
         base._Ready();
+        GameManager.Player = this;
         InitialPosition = Position;
         mazeMain = GetNode<MazeMain>("/root/MazeMain");
     }
@@ -72,7 +73,7 @@ public partial class CharacterBody2d : CharacterBody2D
         Velocity = inputVector * Speed;
         MoveAndSlide();
 
-        // 检测碰撞物体
+        // 检测碰撞终点
         var collisionInfo = MoveAndCollide(Velocity * (float)delta);
         if (collisionInfo != null)
         {
@@ -84,7 +85,9 @@ public partial class CharacterBody2d : CharacterBody2D
             {
                 EmitSignal(nameof(AppleCollected));
             }
+            
         }
+    
     }
 
     /// <summary>
@@ -94,5 +97,14 @@ public partial class CharacterBody2d : CharacterBody2D
     public void ResetPosition()
     {
         Position = InitialPosition;
+    }
+
+    public override void _ExitTree()
+    {
+        // 节点销毁时清空引用，防止内存泄漏
+        if (GameManager.Player == this)
+        {
+            GameManager.Player = null;
+        }
     }
 }

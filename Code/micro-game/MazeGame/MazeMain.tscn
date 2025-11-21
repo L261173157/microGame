@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://bvo8bgw3nbidc"]
+[gd_scene load_steps=23 format=4 uid="uid://bvo8bgw3nbidc"]
 
 [ext_resource type="Script" uid="uid://b4r7ntre8u4u6" path="res://MazeGame/MazeMain.cs" id="1_2dm47"]
 [ext_resource type="Script" uid="uid://dy35fe40y8w64" path="res://MazeGame/CharacterBody2d.cs" id="1_cyyfa"]
@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://cf4m6hjgw1ff7" path="res://MazeGame/asset/wall2.png" id="4_bvaax"]
 [ext_resource type="Texture2D" uid="uid://cd8y45dobjgn2" path="res://MazeGame/asset/apple.png" id="4_edula"]
 [ext_resource type="Script" uid="uid://iu6isr50fxt1" path="res://MazeGame/WinLabel.cs" id="7_nfor8"]
+[ext_resource type="Script" uid="uid://c1e1xhberrdix" path="res://MazeGame/InventoryUI.cs" id="8_xeokc"]
+[ext_resource type="Texture2D" uid="uid://jfupdw0jommn" path="res://MazeGame/asset/candle.png" id="9_br5r8"]
+[ext_resource type="Script" uid="uid://dfcqr5t4cg0sf" path="res://MazeGame/ItemCandle.cs" id="9_g6mkp"]
+[ext_resource type="Script" uid="uid://ten7hlmcbx5n" path="res://MazeGame/Item1Btn.cs" id="9_prp3h"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ine6e"]
 
@@ -47,6 +51,9 @@ size = Vector2(64, 64)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2dm47"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g6mkp"]
+size = Vector2(16, 23)
+
 [node name="MazeMain" type="Node2D"]
 script = ExtResource("1_2dm47")
 
@@ -86,8 +93,7 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_edula")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
-color = Color(0.08468998, 0.08468991, 0.08468992, 1)
+color = Color(0.038397167, 0.038397167, 0.03839716, 1)
 
 [node name="apple" type="StaticBody2D" parent="."]
 position = Vector2(960, 704)
@@ -136,4 +142,45 @@ theme_override_font_sizes/font_size = 64
 text = "游戏胜利"
 script = ExtResource("7_nfor8")
 
+[node name="InventoryUI" type="GridContainer" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 640.0
+offset_right = 784.0
+offset_bottom = 765.0
+columns = 3
+script = ExtResource("8_xeokc")
+
+[node name="Item1Btn" type="Button" parent="CanvasLayer/Control/InventoryUI"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 64
+text = "物品1"
+script = ExtResource("9_prp3h")
+
+[node name="Item2Btn" type="Button" parent="CanvasLayer/Control/InventoryUI"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 64
+text = "物品2"
+
+[node name="Item3Btn" type="Button" parent="CanvasLayer/Control/InventoryUI"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 64
+text = "物品3"
+
+[node name="ItemCandle" type="Area2D" parent="."]
+position = Vector2(136, 68)
+script = ExtResource("9_g6mkp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemCandle"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_g6mkp")
+
+[node name="Sprite2D" type="Sprite2D" parent="ItemCandle"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("9_br5r8")
+
 [connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="RestartGame"]
+[connection signal="pressed" from="CanvasLayer/Control/InventoryUI/Item1Btn" to="CanvasLayer/Control/InventoryUI" method="OnItemButtonPressed" binds= [1]]
